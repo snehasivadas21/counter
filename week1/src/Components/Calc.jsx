@@ -56,6 +56,7 @@ function App(){
 
             <hr />
             <button onClick={()=>navigate("/")}>Go back</button>
+            <button onClick={()=>navigate("/watch")}>Stop</button>
         </div>
     )
 
