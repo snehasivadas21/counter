@@ -5,6 +5,7 @@ const App = () => {
   const [count,setCount]= useState(0)
   const [text,setText] = useState("")
   const [isOn,setIsOn] = useState(false)
+  const [visible,setVisible]=useState(false)
 
   const items=["apple","car","blue"]
 
@@ -20,6 +21,10 @@ const App = () => {
       <input type="text" value={text} placeholder='enter the text' onChange={(e)=>setText(e.target.value)} />
       <br />
       <button onClick={()=>setIsOn(!isOn)}>{isOn?"turnoff":"turnon"}</button>
+      <br/>
+      <button onClick={()=>setVisible(!visible)}>{visible?"show":"hide"}</button>
+      {visible && <p>helo</p>}
+      
       <br />
       <ul>
         {items.map((item,index)=>(

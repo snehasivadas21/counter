@@ -65,3 +65,27 @@ function StopWatch(){
    )
 }
 export default StopWatch;
+
+// import { useEffect, useState } from "react";
+
+// export default function Posts() {
+//   const [posts, setPosts] = useState([]);
+  
+//   useEffect(() => {
+//     fetch("https://jsonplaceholder.typicode.com/posts")
+//       .then(res => res.json())
+//       .then(data => setPosts(data)) 
+//   }, []);
+
+//   return (
+//     <div>
+//       <h2>Posts</h2>
+//       {posts.map(p => (
+//         <div key={p.id}>
+//           <h4>{p.title}</h4>
+//           <p>{p.body}</p>
+//         </div>
+//       ))}
+//     </div>
+//   );
+// }
