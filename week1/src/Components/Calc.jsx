@@ -15,9 +15,20 @@ function App(){
 
     const handleAdd =()=>{
         if(text.trim()!==""){
-            setArr([...arr,text.trim()])
+            setArr([...arr,{text:text.trim(),completed:false}])
             setText("")
         }
+    }
+
+    const handleToggle=(index)=>{
+        const newArr=[...arr]
+        newArr[index].completed = !newArr[index].completed
+        setArr(newArr)
+    }
+    const handleRemove=(index)=>{
+        const newArr=[...arr]
+        newArr.splice(index,1)
+        setArr(newArr)
     }
 
     const navigate = useNavigate()
@@ -50,7 +61,11 @@ function App(){
             <button onClick={handleAdd}>Add</button>
             <ul>
                 {arr.map((item,index)=>(
-                    <li key={index}>{item}</li>
+                    <li key={index} style={{textDecoration:item.completed?"line-through":"none"}}>
+                        {item.text}
+                        <button onClick={()=>handleToggle(index)}>completed</button>
+                        <button onClick={()=>handleRemove(index)}>remove</button>
+                    </li>
                 ))}
             </ul>
 
