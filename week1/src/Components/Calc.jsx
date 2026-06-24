@@ -77,3 +77,42 @@ function App(){
 
 }
 export default App;
+
+// import {useState} from "react";
+
+// function App(){
+//     const [state,setState] = useState([])
+
+//     const handleAdd = (index,newItem) => {
+//         const update = [...state]
+//         update.splice(index,0,newItem)
+//         setState(update)
+//     }
+
+//     const handleDelete= (index) =>{
+//         const update = [...state]
+//         update.splice(index,1)
+//         setState(update)
+//     }
+
+//     const handleDelete = (index) =>{
+//         const update = state.filter((_,i)=>i!=index)
+//         setState(update)
+        
+//     }
+//     return (
+//         <>
+//             <ul>
+//                 {state.map((item,index)=>(
+//                 <li key={index}>
+//                     {item}
+//                     <button onClick={()=>handleDelete(index)}>d</button>
+//                 </li>
+//                 ))}
+//             </ul>
+//             <button onClick={()=>handleAdd(1,"new")}>add</button>
+//         </>
+//     )
+    
+// }
+// export default App;

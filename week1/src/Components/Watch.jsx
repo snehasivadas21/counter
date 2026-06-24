@@ -66,26 +66,89 @@ function StopWatch(){
 }
 export default StopWatch;
 
-// import { useEffect, useState } from "react";
+// import {useState,useEffect} from "react";
 
-// export default function Posts() {
-//   const [posts, setPosts] = useState([]);
-  
-//   useEffect(() => {
-//     fetch("https://jsonplaceholder.typicode.com/posts")
-//       .then(res => res.json())
-//       .then(data => setPosts(data)) 
-//   }, []);
+// const fetchUser = () => {
+//     const [users,setUsers] = useState([])
+//     const [loading,setLoading] = useState(true)
+//     const [error,setError] = useState("")
 
-//   return (
-//     <div>
-//       <h2>Posts</h2>
-//       {posts.map(p => (
-//         <div key={p.id}>
-//           <h4>{p.title}</h4>
-//           <p>{p.body}</p>
-//         </div>
-//       ))}
-//     </div>
-//   );
+//     useEffect(()=>{
+//         const getUser = async () => {
+//             try {
+//                 const response = await fetch("https://jsonplaceholder.typicode.com/users")
+//                 const data = await response.json();
+//                 setUsers(data)
+//             } catch (error) {
+//                 setError("Failed")
+//             } finally {
+//                 setLoading(false)
+//             }
+//         }
+//         getUser();
+//     },[]);
+
+//     if (loading) return <p>loading</p>
+//     if (error) return <p>{error}</p>
+
+//     return (
+//         <>
+//             {users.map((user)=>(
+//                 <div key={user.id}>
+//                     <p>{user.name}</p>
+//                     <p>{user.email}</p>
+//                 </div>
+//             ))}
+//         </>
+//     )
 // }
+// export default fetchUser;
+
+import {useState} from "react";
+
+const products = [
+  { id:1, name:"Laptop", category:"Electronics" },
+  { id:2, name:"Phone", category:"Electronics" },
+  { id:3, name:"Book", category:"Education" }
+]
+function App(){
+    const [selectItem,setSelectItem]=useState("")
+    const [selectedCategory,setSelectedCategory]=useState("All")
+
+    const filterItems = products.filter((product)=>{
+        const matchSearch = product.name.toLowerCase().includes(selectItem.toLowerCase());
+        const matchFilter = selectedCategory === 'All' || product.category === selectedCategory;
+        return matchSearch && matchFilter 
+    })
+
+    return (
+        <>
+            <input
+                type="text"
+                value ={selectItem}
+                onChange = {(e)=>setSelectItem(e.target.value)}/>
+                
+            <select
+                value={selectedCategory}
+                onChange={(e)=>setSelectedCategory(e.target.value)}>
+            <option value="All">All</option>
+            <option value="Electronics">Ele</option>
+            <option value="Education">Edu</option>
+            </select>
+
+            <ul>
+                {filterItems.map((product)=>{
+                   return (
+                       <li key={product.id}>
+                           {product.name} - {product.category} 
+                       </li>
+                   )
+                })}
+            </ul>
+
+            {filterItems.length === 0 && <p>not found</p>}
+        </>
+    )
+    
+}
+export default App;

@@ -20,6 +20,41 @@
 // }
 // export default App;
 
+import { useRef } from "react";
+
+function App() {
+  const inputRef = useRef();
+
+  const handleSubmit = () => {
+    console.log(inputRef.current.value);
+  };
+
+  return (
+    <>
+      <input ref={inputRef} />
+      <button onClick={handleSubmit}>Submit</button>
+    </>
+  );
+}
+export default App;
+
+import { useRef } from "react";
+
+function Example() {
+  const arrRef = useRef([]);
+
+  const addItem = () => {
+    arrRef.current.push(Math.random());
+    console.log(arrRef.current); 
+  };
+
+  return (
+    <div>
+      <button onClick={addItem}>Add</button>
+    </div>
+  );
+}
+
 // import React,{useReducer} from "react";
 
 // function Counter(){
@@ -72,3 +107,181 @@ function Calculator(){
   )
 }
 export default Calculator;
+
+// import {useState,useReducer} from "react";
+
+// function App(){
+//     const reducer = (state,action) =>{
+//         switch(action.type){
+//             case 'add':return [...state,{id:Date.now(),text:action.payload}]
+//             case 'delete':return state.filter(item => item.id!==action.payload)    
+//             default : return state
+//         }
+//     }
+//     const [state,dispatch]=useReducer(reducer,[])
+//     const [input,setInput]=useState("")
+
+//     const addTodo = () =>{
+//         if (!input.trim()) return;
+//         dispatch({type:'add',payload:input})
+//         setInput("")
+//     }
+//     const handleDelete = (id)=>{
+//         dispatch({type:'delete',payload:id})
+//     }
+
+//     return (
+//         <>
+//             <input type="text" value={input} onChange={(e)=>setInput(e.target.value)}/>
+//             <button onClick={addTodo}>add</button>
+//             <ul>
+//                 {state.map((todo)=>(
+//                 <li key={todo.id}>
+//                     {todo.text}
+//                     <button onClick={()=>handleDelete(todo.id)}>delete</button>
+//                 </li>
+//                 ))}
+//             </ul>
+//         </>
+//     )
+    
+// }
+// export default App;
+
+import {createContext,useState,useContext} from "react";
+
+const ThemeContext = createContext()
+
+const App = () =>{
+    const [theme,setTheme] = useState("black")
+
+    const updateTheme = () => setTheme(theme==="black"?"white":"black")
+    
+    return (
+        <ThemeContext.Provider value={{theme,updateTheme}}>
+            <Childcomponent/>
+        </ThemeContext.Provider>
+    )
+}
+const Childcomponent = () =>{
+    const {theme,updateTheme} = useContext(ThemeContext)
+
+    return (
+        <div style={{ background:theme , color:theme==="black"?"white":"black"}}>
+            <h2>Hello</h2>
+            <button onClick={updateTheme}>Click</button>
+        </div>
+    )
+}
+
+export default App;
+
+import {createContext,useState,useContext} from "react"
+
+const CounterContext = createContext()
+const App = () =>{
+    const [count,setCount]=useState(0)
+
+    const increment = () => count<10 && setCount(count+1)
+    const decrement = () => count>0 && setCount(count-1)
+    const reset = () => setCount(0)
+
+    return (
+        <CounterContext.Provider value={{count,increment,decrement,reset}}>
+            <ChildComponent/>
+        </CounterContext.Provider>
+    )
+    
+}
+const ChildComponent=()=>{
+    const {count,increment,decrement,reset}=useContext(CounterContext)
+    return (
+        <>
+            <h2>{count}</h2>
+            <button onClick={increment}>+</button>
+            <button onClick={decrement}>-</button>
+            <button onClick={reset}>0</button>
+        </>
+    )
+    
+}
+export default App;
+
+// import {useState,useMemo} from "react";
+
+// function App(){
+//     const [numbers]=useState([10,20,30,40])
+//     const [count,setCount]=useState(0)
+
+//     const sum = useMemo(()=>{
+//         return numbers.reduce((acc,num)=>acc+num,0)
+//     },[numbers])
+
+//     const avg = useMemo(()=>{
+//         return sum/numbers.length
+//     },[sum,numbers])
+
+//     return (
+//         <>
+//             <h2>{sum}</h2>
+//             <h2>{avg}</h2>
+//             <button onClick={()=>setCount(count+1)}>{count}</button>
+//         </>
+//     )
+    
+// }
+// export default App;
+
+import {useState,useMemo} from "react";
+
+function App(){
+    const [count,setCount]=useState(0)
+    const [number,setNumber]=useState(5)
+
+    const squared = useMemo(()=>{
+        return number*number
+    },[number])
+
+    return (
+        <>
+            <p>{number}--{squared}</p>
+            <button onClick={()=>setNumber((n)=>n+1)}>+</button>
+            <button onClick={()=>setNumber((n)=>n-1)}>-</button>
+            <button onClick={()=>setCount(count+1)}>{count}</button>
+        </>
+    )
+    
+}
+export default App;
+
+const handleSumit = async(e)=>{
+  e.preventDefault();
+
+  const products={name,price,category}
+  try {
+    const response = await fetch("/products",{method:"POST",headers:{"content-type":"application/json"},body:json.stringfy(products)})
+    const data = await response.json()
+    console.log(data)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+const [file,setFile]=useState(null)
+
+const handleFile = async() =>{
+  const formData = new FormData()
+  try {
+    const response = await fetch("/uploads",{method:"POST",body:formData})
+    const data = await response.json()
+    console.log(data)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+const formData = new FormData()
+formData.append("name",name)
+formData.append("email",email)
+formData.append("image",file)
+await fetch("/products",{method:"POST",body:formData})
