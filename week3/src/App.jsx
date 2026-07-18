@@ -55,6 +55,43 @@ function Example() {
   );
 }
 
+import {useRef} from "react";
+
+function App(){
+    const counterRef=useRef(0)
+
+    const handleClick=()=>{
+        counterRef.current+=1
+        console.log(counterRef.current)
+    }
+    return (
+        <>
+            <button onClick={handleClick}>click</button>
+        </>
+    )
+}
+export default App;
+
+import {useState,useRef,useEffect} from "react";
+
+function App(){
+    const [count,setCount]=useState(0)
+    const prevCount=useRef(0)
+
+    useEffect(()=>{
+        prevCount.current = count
+    },[count])
+    return (
+        <>
+            <h2>{count}</h2>
+            <h2>{prevCount.current}</h2>
+            <button onClick={()=>setCount(count+1)}>click</button>
+        </>
+    )
+    
+}
+export default App;
+
 // import React,{useReducer} from "react";
 
 // function Counter(){

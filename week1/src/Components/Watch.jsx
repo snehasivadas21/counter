@@ -20,6 +20,21 @@ import { useNavigate } from "react-router-dom";
 // }
 // export default Clock;
 
+import {useEffect} from "react";
+
+function App(){
+    useEffect(()=>{
+        console.log("Mounted")
+        return ()=>{
+            console.log("Unmounted")
+        }
+    },[])
+    return (
+        <h2>hello</h2>
+    )
+}
+export default App;
+
 function StopWatch(){
 
     const [time,setTime] = useState(0)
