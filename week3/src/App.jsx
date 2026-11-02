@@ -1,5 +1,5 @@
+// useRef
 // import React,{useRef} from "react";
-
 // function App(){
 //   const textRef = useRef(null)
 //   const changeColor = (color) => {
@@ -20,80 +20,80 @@
 // }
 // export default App;
 
-import { useRef } from "react";
+// import { useRef } from "react";
 
-function App() {
-  const inputRef = useRef();
+// function App() {
+//   const inputRef = useRef();
 
-  const handleSubmit = () => {
-    console.log(inputRef.current.value);
-  };
+//   const handleSubmit = () => {
+//     console.log(inputRef.current.value);
+//   };
 
-  return (
-    <>
-      <input ref={inputRef} />
-      <button onClick={handleSubmit}>Submit</button>
-    </>
-  );
-}
-export default App;
+//   return (
+//     <>
+//       <input ref={inputRef} />
+//       <button onClick={handleSubmit}>Submit</button>
+//     </>
+//   );
+// }
+// export default App;
 
-import { useRef } from "react";
+// import { useRef } from "react";
 
-function Example() {
-  const arrRef = useRef([]);
+// function Example() {
+//   const arrRef = useRef([]);
 
-  const addItem = () => {
-    arrRef.current.push(Math.random());
-    console.log(arrRef.current); 
-  };
+//   const addItem = () => {
+//     arrRef.current.push(Math.random());
+//     console.log(arrRef.current); 
+//   };
 
-  return (
-    <div>
-      <button onClick={addItem}>Add</button>
-    </div>
-  );
-}
+//   return (
+//     <div>
+//       <button onClick={addItem}>Add</button>
+//     </div>
+//   );
+// }
 
-import {useRef} from "react";
+// import {useRef} from "react";
 
-function App(){
-    const counterRef=useRef(0)
+// function App(){
+//     const counterRef=useRef(0)
 
-    const handleClick=()=>{
-        counterRef.current+=1
-        console.log(counterRef.current)
-    }
-    return (
-        <>
-            <button onClick={handleClick}>click</button>
-        </>
-    )
-}
-export default App;
+//     const handleClick=()=>{
+//         counterRef.current+=1
+//         console.log(counterRef.current)
+//     }
+//     return (
+//         <>
+//             <button onClick={handleClick}>click</button>
+//         </>
+//     )
+// }
+// export default App;
 
-import {useState,useRef,useEffect} from "react";
+// import {useState,useRef,useEffect} from "react";
 
-function App(){
-    const [count,setCount]=useState(0)
-    const prevCount=useRef(0)
+// function App(){
+//     const [count,setCount]=useState(0)
+//     const prevCount=useRef(0)
 
-    useEffect(()=>{
-        prevCount.current = count
-    },[count])
-    return (
-        <>
-            <h2>{count}</h2>
-            <h2>{prevCount.current}</h2>
-            <button onClick={()=>setCount(count+1)}>click</button>
-        </>
-    )
+//     useEffect(()=>{
+//         prevCount.current = count
+//     },[count])
+//     return (
+//         <>
+//             <h2>{count}</h2>
+//             <h2>{prevCount.current}</h2>
+//             <button onClick={()=>setCount(count+1)}>click</button>
+//         </>
+//     )
     
-}
-export default App;
+// }
+// export default App;
 
+// useReducer
 // import React,{useReducer} from "react";
-
 // function Counter(){
 //   const reducer = (state,action) =>{
 //     switch (action.type){
@@ -117,36 +117,34 @@ export default App;
 // }
 // export default Counter;
 
-import React,{useState,useReducer} from "react";
+// import React,{useState,useReducer} from "react";
+// function Calculator(){
+//   const reducer = (state,action)=>{
+//     switch(action.type){
+//       case 'add':return {result:action.payload.num1+action.payload.num2};
+//       case 'sub':return {result:action.payload.num1-action.payload.num2};
+//       case 'reset':return {result:0};
+//       default:return state;
+//     }
+//   }
+//   const [state,dispatch] = useReducer(reducer,{result:0})
+//   const [num1,setNum1] = useState("")
+//   const [num2,setNum2] = useState("")
 
-function Calculator(){
-  const reducer = (state,action)=>{
-    switch(action.type){
-      case 'add':return {result:action.payload.num1+action.payload.num2};
-      case 'sub':return {result:action.payload.num1-action.payload.num2};
-      case 'reset':return {result:0};
-      default:return state;
-    }
-  }
-  const [state,dispatch] = useReducer(reducer,{result:0})
-  const [num1,setNum1] = useState("")
-  const [num2,setNum2] = useState("")
-
-  return (
-    <div>
-      <h2>Result:{state.result}</h2>
-      <input type="number" value={num1} onChange={(e)=>setNum1(e.target.value)} />
-      <input type="number" value={num2} onChange={(e)=>setNum2(e.target.value)} />
-      <button onClick={()=>dispatch({type:"add",payload:{num1,num2}})}>+</button>
-      <button onClick={()=>dispatch({type:"sub",payload:{num1,num2}})}>-</button>
-      <button onClick={()=>dispatch({type:"reset"})}>reset</button>
-    </div>
-  )
-}
-export default Calculator;
+//   return (
+//     <div>
+//       <h2>Result:{state.result}</h2>
+//       <input type="number" value={num1} onChange={(e)=>setNum1(e.target.value)} />
+//       <input type="number" value={num2} onChange={(e)=>setNum2(e.target.value)} />
+//       <button onClick={()=>dispatch({type:"add",payload:{num1,num2}})}>+</button>
+//       <button onClick={()=>dispatch({type:"sub",payload:{num1,num2}})}>-</button>
+//       <button onClick={()=>dispatch({type:"reset"})}>reset</button>
+//     </div>
+//   )
+// }
+// export default Calculator;
 
 // import {useState,useReducer} from "react";
-
 // function App(){
 //     const reducer = (state,action) =>{
 //         switch(action.type){
@@ -185,65 +183,67 @@ export default Calculator;
 // }
 // export default App;
 
-import {createContext,useState,useContext} from "react";
+// useContext
+// import {createContext,useState,useContext} from "react";
 
-const ThemeContext = createContext()
+// const ThemeContext = createContext()
 
-const App = () =>{
-    const [theme,setTheme] = useState("black")
+// const App = () =>{
+//     const [theme,setTheme] = useState("black")
 
-    const updateTheme = () => setTheme(theme==="black"?"white":"black")
+//     const updateTheme = () => setTheme(theme==="black"?"white":"black")
     
-    return (
-        <ThemeContext.Provider value={{theme,updateTheme}}>
-            <Childcomponent/>
-        </ThemeContext.Provider>
-    )
-}
-const Childcomponent = () =>{
-    const {theme,updateTheme} = useContext(ThemeContext)
+//     return (
+//         <ThemeContext.Provider value={{theme,updateTheme}}>
+//             <Childcomponent/>
+//         </ThemeContext.Provider>
+//     )
+// }
+// const Childcomponent = () =>{
+//     const {theme,updateTheme} = useContext(ThemeContext)
 
-    return (
-        <div style={{ background:theme , color:theme==="black"?"white":"black"}}>
-            <h2>Hello</h2>
-            <button onClick={updateTheme}>Click</button>
-        </div>
-    )
-}
+//     return (
+//         <div style={{ background:theme , color:theme==="black"?"white":"black"}}>
+//             <h2>Hello</h2>
+//             <button onClick={updateTheme}>Click</button>
+//         </div>
+//     )
+// }
 
-export default App;
+// export default App;
 
-import {createContext,useState,useContext} from "react"
+// import {createContext,useState,useContext} from "react"
 
-const CounterContext = createContext()
-const App = () =>{
-    const [count,setCount]=useState(0)
+// const CounterContext = createContext()
+// const App = () =>{
+//     const [count,setCount]=useState(0)
 
-    const increment = () => count<10 && setCount(count+1)
-    const decrement = () => count>0 && setCount(count-1)
-    const reset = () => setCount(0)
+//     const increment = () => count<10 && setCount(count+1)
+//     const decrement = () => count>0 && setCount(count-1)
+//     const reset = () => setCount(0)
 
-    return (
-        <CounterContext.Provider value={{count,increment,decrement,reset}}>
-            <ChildComponent/>
-        </CounterContext.Provider>
-    )
+//     return (
+//         <CounterContext.Provider value={{count,increment,decrement,reset}}>
+//             <ChildComponent/>
+//         </CounterContext.Provider>
+//     )
     
-}
-const ChildComponent=()=>{
-    const {count,increment,decrement,reset}=useContext(CounterContext)
-    return (
-        <>
-            <h2>{count}</h2>
-            <button onClick={increment}>+</button>
-            <button onClick={decrement}>-</button>
-            <button onClick={reset}>0</button>
-        </>
-    )
+// }
+// const ChildComponent=()=>{
+//     const {count,increment,decrement,reset}=useContext(CounterContext)
+//     return (
+//         <>
+//             <h2>{count}</h2>
+//             <button onClick={increment}>+</button>
+//             <button onClick={decrement}>-</button>
+//             <button onClick={reset}>0</button>
+//         </>
+//     )
     
-}
-export default App;
+// }
+// export default App;
 
+// useMemo
 // import {useState,useMemo} from "react";
 
 // function App(){
@@ -269,56 +269,57 @@ export default App;
 // }
 // export default App;
 
-import {useState,useMemo} from "react";
+// import {useState,useMemo} from "react";
 
-function App(){
-    const [count,setCount]=useState(0)
-    const [number,setNumber]=useState(5)
+// function App(){
+//     const [count,setCount]=useState(0)
+//     const [number,setNumber]=useState(5)
 
-    const squared = useMemo(()=>{
-        return number*number
-    },[number])
+//     const squared = useMemo(()=>{
+//         return number*number
+//     },[number])
 
-    return (
-        <>
-            <p>{number}--{squared}</p>
-            <button onClick={()=>setNumber((n)=>n+1)}>+</button>
-            <button onClick={()=>setNumber((n)=>n-1)}>-</button>
-            <button onClick={()=>setCount(count+1)}>{count}</button>
-        </>
-    )
+//     return (
+//         <>
+//             <p>{number}--{squared}</p>
+//             <button onClick={()=>setNumber((n)=>n+1)}>+</button>
+//             <button onClick={()=>setNumber((n)=>n-1)}>-</button>
+//             <button onClick={()=>setCount(count+1)}>{count}</button>
+//         </>
+//     )
     
-}
-export default App;
+// }
+// export default App;
 
-const handleSumit = async(e)=>{
-  e.preventDefault();
+// form
+// const handleSumit = async(e)=>{
+//   e.preventDefault();
 
-  const products={name,price,category}
-  try {
-    const response = await fetch("/products",{method:"POST",headers:{"content-type":"application/json"},body:json.stringfy(products)})
-    const data = await response.json()
-    console.log(data)
-  } catch (error) {
-    console.log(error)
-  }
-}
+//   const products={name,price,category}
+//   try {
+//     const response = await fetch("/products",{method:"POST",headers:{"content-type":"application/json"},body:json.stringfy(products)})
+//     const data = await response.json()
+//     console.log(data)
+//   } catch (error) {
+//     console.log(error)
+//   }
+// }
 
-const [file,setFile]=useState(null)
+// const [file,setFile]=useState(null)
 
-const handleFile = async() =>{
-  const formData = new FormData()
-  try {
-    const response = await fetch("/uploads",{method:"POST",body:formData})
-    const data = await response.json()
-    console.log(data)
-  } catch (error) {
-    console.log(error)
-  }
-}
+// const handleFile = async() =>{
+//   const formData = new FormData()
+//   try {
+//     const response = await fetch("/uploads",{method:"POST",body:formData})
+//     const data = await response.json()
+//     console.log(data)
+//   } catch (error) {
+//     console.log(error)
+//   }
+// }
 
-const formData = new FormData()
-formData.append("name",name)
-formData.append("email",email)
-formData.append("image",file)
-await fetch("/products",{method:"POST",body:formData})
+// const formData = new FormData()
+// formData.append("name",name)
+// formData.append("email",email)
+// formData.append("image",file)
+// await fetch("/products",{method:"POST",body:formData})
